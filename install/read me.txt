@@ -1,0 +1,22 @@
+Instructions for starting the program:
+
+1. Run the "create Bubble" in mysql.
+2. Run "create Login".
+3. Open the project in eclips.
+4. Add the two Jar files (activation-1.1.1, javax.mail) and the mysql Jar files into ModulePath in java Build Path.
+5. In src->application->loginClasssView change the Global variable 'PASSWORD' to your mysql password.
+6. In src->sqlConnection->sql change the Global variable 'PASSWORD' to your mysql password.
+7. Run the project.
+8. Enter the system by enete one of the following option:
+	username: alon	password: asdf12
+	username: dor	password: asdf12
+	username: mem1	password: asdf12
+	username: mem2	password: asdf12
+	username: mem3	password: asdf12
+	(some of the users have more Priorities then the others)
+9. Enjoy working with our program.
+
+
+Creators:
+Alon Shlomi	205436025
+Dor Ferenc	316279942

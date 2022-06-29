@@ -1,0 +1,28 @@
+create schema login;
+use login;
+
+create table loginT
+(username varchar(20) NOT NULL ,
+emPassword varchar(20) NOT NULL,
+emType int NOT NULL,
+primary key(username));
+
+insert into loginT(username,emPassword,emType)
+values ("alon", "asdf12", 2),
+("dor", "asdf12", 2),
+("mem1", "asdf12", 2),
+("mem2", "asdf12", 1),
+("mem3", "asdf12", 0);
+
+-- select
+select emType from loginT
+where username LIKE 'alon' AND EmPassword Like 'asdf12';
+
+-- update
+update loginT
+set Empasswors = 'asdf13'
+where username LIKE 'alon';
+
+-- delete
+delete from loginT
+where username LIKE 'mem2';

@@ -1,0 +1,140 @@
+create schema Bubble;
+use Bubble;
+
+create table Driver
+(Driver_serial int NOT NULL auto_increment,
+License_Number VARCHAR(7) NOT NULL,
+First_Name varchar(20) NOT NULL,
+Last_name varchar(20),
+primary key(Driver_serial));
+
+insert into Driver
+(License_Number,First_Name,Last_name)
+values ("1234591","Eli","Cohen"),
+("5426193","Avi","Levi"),
+("5246937","Dor","Mizrahi"),
+("5424895","Ben","Zion"),
+("6325915","Eti","Mizrahi"),
+("5218675","Raz","Cohen"),
+("9984475","Alon","Levi");
+
+
+
+
+select * from Driver;
+
+create table Car
+(Via_Number int NOT NULL auto_increment,
+Window_number int NOT NULL,
+License_Plate_number varchar(8) NOT NULL,
+primary key(Via_Number));
+
+insert into Car(Via_Number,Window_number,License_Plate_number)
+values (1, 150, "5246851"),
+(2, 100, "53648255"),
+(3, 120, "12451241"),
+(4, 135, "36356639"),
+(5, 149, "74588284"),
+(6, 155, "15987538"),
+(7, 103, "95686366");
+
+select * from Car;
+
+create table Employee
+(Id VARCHAR(9) NOT NULL,
+First_Name varchar(20) NOT NULL,
+Last_name varchar(20),
+Birthdate date,
+typeOf varchar(5),
+primary key(Id));
+
+insert into Employee(ID,First_Name,Last_name,Birthdate,typeOf)
+values 
+("205564725","Alon","Cohen", '1995-12-31', "bakar"),
+("659888541","Dor","Levi", '1990-02-12', "bakar"),
+("548517526","Eli","Shlomi", '1992-04-17', "bakar"),
+("205639668","Coral","Ferenc", '1999-10-23', "ofice"),
+("968577848","Bar","Mizrahi", '1993-07-16', "ofice"),
+("145888788","Roee","Berabi", '1994-11-03', "field"),
+("598874333","Liran","Liberman", '1995-01-27', "bakar");
+
+select * from employee;
+
+
+
+create table EventReport
+(reportID int NOT NULL auto_increment,
+Title VARCHAR(25) NOT NULL,
+thedate date,
+driver_serial int NOT NULL,
+car_Via_Number int NOT NULL,
+Employee_Id VARCHAR(9) NOT NULL,
+location varchar(30),
+theDescription varchar(50),
+damageDescription varchar(50),
+passengerDescription varchar(50),
+primary key(reportID),
+foreign key (driver_serial) REFERENCES  Driver(driver_serial),
+foreign key (car_Via_Number) REFERENCES  car(Via_Number),
+foreign key (Employee_Id) REFERENCES  Employee(Id));
+
+
+insert into EventReport(Title,thedate,driver_serial,car_Via_Number,Employee_Id,location
+,theDescription,damageDescription)
+values
+("New accident",NOW(), 2, 3, "659888541", "Central Station", "accident...", "no damage"),
+("Major accident",NOW(), 3, 5, "205564725", "Ramat Hahial", "accident...", "damage");
+insert into EventReport(Title,thedate,driver_serial,car_Via_Number,Employee_Id,location,
+theDescription,damageDescription,passengerDescription)
+value("a accident",NOW(), 1, 2, "598874333", "Azrieli Mall", "accident...", "no damage","2 passengers");
+
+
+select * from EventReport;
+
+create table LostReport
+(LostID int NOT NULL auto_increment,
+itemDescription VARCHAR(40) NOT NULL,
+driver_serial int NOT NULL,
+car_Via_Number int NOT NULL,
+Employee_Id VARCHAR(9) NOT NULL,
+isItemValuable int,
+theStatus varchar(25),
+foundDate date,
+ControlDeliveredDate date,
+customerDeliveredDate date,
+primary key(LostID),
+foreign key (driver_serial) REFERENCES  Driver(driver_serial),
+foreign key (car_Via_Number) REFERENCES  car(Via_Number) ,
+foreign key (Employee_Id) REFERENCES  Employee(Id));
+
+
+insert into LostReport(itemDescription,driver_serial,car_Via_Number,Employee_Id,
+isItemValuable,theStatus,foundDate)
+values ('iphone13', 2, 3, "205564725",1, "IN_CAR",NOW()),
+('sunglasses', 1, 5,  "205564725",1, "IN_CAR",NOW());
+insert into LostReport(itemDescription,driver_serial,car_Via_Number,Employee_Id,
+isItemValuable,theStatus,foundDate,
+ControlDeliveredDate,customerDeliveredDate)
+values ('keys', 3, 2, "205564725", 0, "DELIVERED_TO_USER",NOW(),now(),now());
+
+
+select * from LostReport;
+
+create table Contact
+(ContactID int NOT NULL auto_increment,
+contactName VARCHAR(40) NOT NULL,
+phone VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+represent int not NULL,
+primary key(ContactID));
+
+insert into Contact(contactName,phone,email,represent)
+values 
+("bank", "+972506985146", "alonasshlomi@gmail.com",0),
+("mail", "+972506985146", "alonasshlomi@gmail.com",1),
+("tha big manager", "+972506985146", "alonasshlomi@gmail.com",2),
+("dad", "+972506985146", "alonasshlomi@gmail.com",1);
+
+
+select * from Contact;
+
